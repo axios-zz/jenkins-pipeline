@@ -1,28 +1,43 @@
 pipeline {
-    agent { docker { image 'python:3.7' } }
+    agent any
+    environment {
+      PROJECT_NAME = "Neptun"
+      OWNER_NAME   = "Denis Astahov"
+    }
 
     stages {
         stage('1-Build') {
             steps {
-                echo "Start of Stage Build"
+                echo "Start of Stage Build..."
                 echo "Building......."
-                sh   "python --version"
-                echo "End of Stage Build"
+                echo "End of Stage Build..."
             }
         }
         stage('2-Test') {
             steps {
-                echo "Start of Stage Test"
+                echo "Start of Stage Test..."
                 echo "Testing......."
-                echo "End of Stage Build"
+                echo "Privet ${PROJECT_NAME}"
+                echo "Owner is ${OWNER_NAME}"
+                echo "End of Stage Build..."
             }
         }
         stage('3-Deploy') {
             steps {
-                echo "Start of Stage Deploy"
+                echo "Start of Stage Deploy..."
                 echo "Deploying......."
-                echo "End of Stage Build"
+                sh "ls -la"
+                sh '''
+                   echo "Line1"
+                   echo "Line2"
+                '''
+                echo "End of Stage Build..."
             }
         }
-   }
+        stage('4-Celebrate') {
+            steps {
+                echo "CONGRATULYACIYA!"
+            }
+        }	
+    }
 }
