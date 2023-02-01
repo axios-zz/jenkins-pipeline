@@ -1,11 +1,12 @@
 pipeline {
-    agent any
+    agent { docker { image 'python:3.7' } }
 
     stages {
         stage('1-Build') {
             steps {
                 echo "Start of Stage Build"
                 echo "Building......."
+                sh   "python --version"
                 echo "End of Stage Build"
             }
         }
@@ -23,5 +24,5 @@ pipeline {
                 echo "End of Stage Build"
             }
         }
-    }
+   }
 }
